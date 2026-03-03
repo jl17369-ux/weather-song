@@ -1,52 +1,41 @@
-//define variable for our location
-let locationField;
 
-let audioCtx;
+async function fetchData(){
+  try{
+    
 
-let freq = 0;
+    const response = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London,UK/?key=YH5QF5SWJL5LZ8SFPZFT2RCC2&elements=temp')
 
-let infoField;
-//wait until html document is loaded so that we can access the keyboard input field
-document.addEventListener('DOMContentLoaded', function(event) { 
-  //locationField = document.getElementById("location");
-  locationField = document.querySelector("#location");
-  infoField = document.getElementById('info');
-})
+      if(!response.ok){
+        throw new Error("Could not get resource");
 
-// create web audio api context
-audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-// create Oscillator node
-const oscillator = audioCtx.createOscillator();
-
-oscillator.type = "square";
-oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime); // value in hertz
-oscillator.connect(audioCtx.destination);
-oscillator.start();
-
-function sonify(){
-  console.log(locationField.value);
-
-fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+locationField.value +'?key=YH5QF5SWJL5LZ8SFPZFT2RCC2')
-	.then(response => response.json())
-	.then(response => {
-    freq = response.days[0].temp + 50; console.log(freq - 50); 
-    oscillator.frequency.setValueAtTime(freq, audioCtx.currentTime); 
-    audioCtx.resume();
-    infoField.innerHTML = "the weather in " + locationField.value + " is " + response.days[0].temp
-    if (response.days[0].temp < 60) {
-      infoField.innerHTML += " ❄️"
+      }
+      const data = await response.json();
+      console.log(data);
+      const temp = response.currentConditions;
+      console.log(temp)
+      const imgElem = document.getElementById("weatherIMG");
+      if (temp >= 80) {
+        imgElem.src = 'img/hot.jpg';
+        imgElem.style.display = "block";
+      }
+      else if (temp<=34){
+        imgElem.src = 'img/cold.jpg';
+        imgElem.style.display = "block";
+      }
+      else {
+        imgElem.src = 'img/warm.jpg';
+        imgElem.style.display = "block";
+      }
     }
-    else {
-      infoField.innerHTML += " ☀️"
-    }
-  })
-	.catch(err => console.error(err));
+
+catch(error){
+console.error(error);
+}
 }
 
-function stop(){
-  audioCtx.suspend();
-}
+
+
+
 
 
 
