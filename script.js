@@ -1,9 +1,14 @@
 
+
+let locationField;
+document.addEventListener('DOMContentLoaded', function(event) { 
+  locationField = document.getElementById("location");
+})
+
 async function fetchData(){
   try{
-    
 
-    const response = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London,UK/?key=YH5QF5SWJL5LZ8SFPZFT2RCC2&elements=temp')
+    const response = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+locationField.value+'/?key=YH5QF5SWJL5LZ8SFPZFT2RCC2')
 
       if(!response.ok){
         throw new Error("Could not get resource");
@@ -11,7 +16,7 @@ async function fetchData(){
       }
       const data = await response.json();
       console.log(data);
-      const temp = response.currentConditions;
+      const temp = data.currentConditions.temp;
       console.log(temp)
       const imgElem = document.getElementById("weatherIMG");
       if (temp >= 80) {
