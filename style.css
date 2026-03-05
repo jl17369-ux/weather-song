@@ -1,7 +1,7 @@
-html, body {
+html {
   color:whitesmoke;
   font-family: "Helvetica";
-  background: salmon;
+  background: rgb(246, 176, 0);
   font-size:25px;
 }
 
@@ -15,5 +15,27 @@ button {
   height: 23px;
   margin-top:0px;
   padding-top:0px;
+}
+
+.UI {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 200px;
+}
+.text {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size:18px;
+opacity: 60%;
+top: -80px
+
+}
+.image {
+display: flex;
+justify-content: center;
+align-items: center;
 }
 

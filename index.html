@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+
    <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-  <span>Location: <input type="text" id="location" value="pick a place"></span>
 
+  <div class = "UI">
+    <span>Location: <input type="text" id="location" value="name a city"></span>
+    <button onclick = 'fetchData()'> get weather feel</button><br>
+  </div>
+  <div class = "text">
+    <p1>try "Venezuela","Yakutsk", and "New York"</p1>
+  </div>
+  <div class = "image">
+    <img src="" alt = 'visualization' id = "weatherIMG" style = "display: none">
+  </div>
+  <div class = "placeholder">
+    <img src=" "id = "placeholder" >
+  </div>
   
- <button onclick = 'fetchData()'> get weather</button><br>
- <img src="" alt = 'visualization' id = "weatherIMG" style = "display: none">
- <p>try "Venezuela","Yakutsk", and "New York"</p>
+ 
 </body>
 </html>
 
