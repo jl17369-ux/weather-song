@@ -12,3 +12,6 @@ They correspond to warm, cold, and hot respectively
 You type in a city in the search box and then click on the "get weather button". 
 
 *There is a list of cities below the search box if you can't think of any.*
+
+### Here is an example of the page:
+![](screen.png)
